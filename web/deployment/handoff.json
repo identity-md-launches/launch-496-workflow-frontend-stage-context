@@ -1,0 +1,55 @@
+{
+  "chainId": 11155111,
+  "repoUrl": "https://github.com/identity-md-launches/launch-495-workflow-contract-stage-context",
+  "version": 1,
+  "launchId": "f5dae2d0-cbb9-4e40-b54c-62a73a3e746a",
+  "manifest": {
+    "kind": "evm_project",
+    "pool": {
+      "fee": 3000,
+      "tickSpacing": 60,
+      "initialPrice": "79228162514264337593543950336",
+      "pairedCurrency": "0x0000000000000000000000000000000000000000"
+    },
+    "notes": "PepeJackpot uses existing Ethereum mainnet dependencies. Constructor arguments are, in order: Uniswap v4 PoolManager, ICE, LaunchpadHook, IMD, and the Chainlink VRF v2.5 direct-funding wrapper. Its five static address arguments encode the variable parts of the brief's pool keys; the implementation fixes native ETH/ICE to fee 0, tick spacing 60 and the existing hook, and native ETH/IMD to fee 10000, tick spacing 200 and no hook. PepeJackpot has no owner or initialization calls. LaunchToken has no constructor arguments; PJACK is separate from ICE and IMD and is unused by the jackpot. The manifest pool is the separate hookless native ETH/PJACK launch pool, not either existing application pool; initialPrice is decimal sqrtPriceX96. Review finding: the required launch token and protocol liquidity conflict with the approved brief's request for no new token, pool or liquidity. This conflict remains unresolved by the manifest: the evm_project kind cannot launch without the token and pool, so resolving it requires a recorded requester decision accepting that PJACK and the ETH/PJACK pool exist alongside the game, and the launch site must not present PJACK as the jackpot's asset (the pot is ICE). Policy, signed artifact linkage, source publication, admission and deployment belong to services; these notes do not authorize deployment or assert independent review approval. Mainnet dependency identities and configuration require release verification.",
+    "token": {
+      "name": "PepeJackpot",
+      "symbol": "PJACK",
+      "contract": "LaunchToken",
+      "decimals": 18
+    },
+    "contracts": [
+      {
+        "contract": "PepeJackpot",
+        "constructorArgs": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x64914921e03069da66823f84ffcfb9931f05281a",
+          "0x51768f5da32ba2008304cc81674da51acb802888",
+          "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+          "0x02aae1a04f9828517b3007f83f6181900cad910c"
+        ]
+      }
+    ]
+  },
+  "contracts": [
+    {
+      "name": "LaunchToken",
+      "txHash": "0x55a5e0ee6276f51d32146d8a2982ba0cc60398e3298bd4e16873aab0fc775e4e",
+      "abiHash": "7a9ef4a238349dfc16a3652d6d4e0c0137b6b6846bcb5f74c0e6919a68e1dbfb",
+      "address": "0xc43fbdcebf6a52d0249270718437603153b684d8",
+      "blockNumber": 11812435,
+      "creationCodeHash": "e342c235bfcafc388275faf473d67d2ea4da5197e773a47dfe6aa7bc6d080b6a"
+    },
+    {
+      "name": "PepeJackpot",
+      "txHash": "0x55a5e0ee6276f51d32146d8a2982ba0cc60398e3298bd4e16873aab0fc775e4e",
+      "abiHash": "3b520547eaf669c58fb28c32d06f5c4510b6e358eb027d813de39336bf5a69d8",
+      "address": "0x3a39c736da41df95cef361c0336c51fb00532b29",
+      "blockNumber": 11812435,
+      "creationCodeHash": "aac6803a617f1a7d2533ed34a24396c34633ad1802519ed2510605dedef25e2d"
+    }
+  ],
+  "sourceCommit": "08755fd953a9172e5843295d2ccac33a496f51be",
+  "abiInstructions": "Build ABIs from this exact source commit; compare canonicalKeccak(abi) with abiHash. Verify deployed code on the stated chain before enabling transactions.",
+  "attestationHash": "550ba08841880cd5146a92d543323dd59022f9326883de8b546f9122c4a64627"
+}
